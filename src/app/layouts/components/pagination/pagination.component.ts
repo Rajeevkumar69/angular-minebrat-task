@@ -10,19 +10,22 @@ export class PaginationComponent implements OnInit {
   constructor() {
 
   }
+
   ngOnInit(): void {
-
-
-
-
   }
 
+  @Input() public page = 1;
+  @Input() public perPage = 5;
+  @Output() public pageChange = new EventEmitter<number>();
 
-  @Input() page = 1;
-  @Input() perPage = 5;
-  @Output() pageChange = new EventEmitter<number>();
+  public next() {
+    this.pageChange.emit(this.page + 1);
+  }
 
-  next() { this.pageChange.emit(this.page + 1); }
-  prev() { if (this.page > 1) this.pageChange.emit(this.page - 1); }
+  public prev() {
+    if (this.page > 1) {
+      this.pageChange.emit(this.page - 1);
+    }
+  }
 
 }

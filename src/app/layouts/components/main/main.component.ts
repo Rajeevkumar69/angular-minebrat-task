@@ -9,7 +9,6 @@ import { CommonServiceService } from 'src/app/shared/services/common-service.ser
 })
 export class MainComponent {
   public searchForm: FormGroup = new FormGroup({});
-
   public user: any = null;
   public repos: any[] = [];
   public error: any = '';
