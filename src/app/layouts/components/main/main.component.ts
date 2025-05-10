@@ -28,7 +28,7 @@ export class MainComponent {
 
   public createSearchForm() {
     this.searchForm = this._formBuilder.group({
-      username: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]),
 
     })
   }

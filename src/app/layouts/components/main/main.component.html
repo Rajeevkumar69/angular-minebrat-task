@@ -1,11 +1,19 @@
 <form [formGroup]="searchForm" (ngSubmit)="search()" class="container py-4">
      <div class="row g-3 align-items-center">
           <div class="col-md-8">
-               <input formControlName="username" type="text" class="form-control" placeholder="Enter GitHub username" />
-               <div *ngIf="searchForm.controls['username'].invalid && searchForm.controls['username'].touched"
-                    class="text-danger mt-1 small">
-                    Invalid Username
-               </div>
+               <input formControlName="username" type="text" maxlength="25" class="form-control"
+                    placeholder="Enter GitHub username" />
+               <ng-container *ngIf="searchForm.controls['username'].touched && searchForm.controls['username'].invalid">
+                    <div *ngIf="searchForm.controls['username'].errors?.['required']" class="text-danger mt-1 small">
+                         Username is required
+                    </div>
+                    <div *ngIf="searchForm.controls['username'].errors?.['minlength']" class="text-danger mt-1 small">
+                         Minimum 2 characters required
+                    </div>
+                    <div *ngIf="searchForm.controls['username'].errors?.['maxlength']" class="text-danger mt-1 small">
+                         Maximum 25 characters allowed
+                    </div>
+               </ng-container>
           </div>
           <div class="col-md-4">
                <button type="submit" class="btn btn-primary w-100">Search</button>
